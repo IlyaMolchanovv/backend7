@@ -53,8 +53,8 @@ function change_pass($db){session_start();
 
 session_start();
 
-$db_user = 'u47569';   // Логин БД
-$db_pass = '3312824';  // Пароль БД
+$db_user = 'u41057';   // Логин БД
+$db_pass = '1243534';  // Пароль БД
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   //реализация выхода из аккаунта и завершения сессии  
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
-  $db = new PDO('mysql:host=localhost;dbname=u47569', $db_user, $db_pass, array(
+  $db = new PDO('mysql:host=localhost;dbname=u41057', $db_user, $db_pass, array(
     PDO::ATTR_PERSISTENT => true
   ));
 
