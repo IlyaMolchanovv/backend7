@@ -8,26 +8,26 @@
 
 <?php
 
-$db_user = 'u41057';   // Логин БД
-$db_pass = '1243534';
-$db = new PDO('mysql:host=localhost;dbname=u41057', $db_user, $db_pass, array(
-    PDO::ATTR_PERSISTENT => true
-));
-$login = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
-$stmt = $db->prepare("SELECT * FROM admin WHERE login = ?");
-      $stmt->execute(array(
-        $login
-      ));
-$admin_pass = $stmt->fetch();
-
-if (empty($_SERVER['PHP_AUTH_USER']) ||
+$user = 'u41057';
+$pass = '1243534';
+$db = new PDO('mysql:host=localhost;dbname=u41057', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+$stmt = $db->prepare("SELECT * FROM admins");
+$stmt->execute([]);
+$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$adm = $row[0]['login'];
+$pass = $row[0]['password'];
+// login = admin
+// pass = 123;
+if (
+    empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    !password_verify($_SERVER['PHP_AUTH_PW'], $admin_pass['pass'])){
-      header('HTTP/1.1 401 Unanthorized');
-      header('WWW-Authenticate: Basic realm="My site"');
-      print('<h1>401 Требуется авторизация</h1>');
-      exit();
+    $_SERVER['PHP_AUTH_USER'] != $adm ||
+    md5($_SERVER['PHP_AUTH_PW']) != $pass
+) {
+    header('HTTP/1.1 401 Unanthorized');
+    header('WWW-Authenticate: Basic realm="My site"');
+    print('<h1>401 Требуется авторизация</h1>');
+    exit();
 }
 
 print('Вы успешно авторизовались и видите защищенные паролем данные.<br>');
