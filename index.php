@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
 
-  $user = 'u47569';
-  $pass = '3312824';
-  $db = new PDO('mysql:host=localhost;dbname=u47569', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+  $user = 'u41057';
+  $pass = '1243534';
+  $db = new PDO('mysql:host=localhost;dbname=u41057', $user, $pass, array(PDO::ATTR_PERSISTENT => true));
 
 	function checkToken($token){
 		return password_verify($_SESSION['token'], $token);
